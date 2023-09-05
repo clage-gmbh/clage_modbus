@@ -1,0 +1,63 @@
+ain, 0, temp_in_C10, 0, Current intake temperature [1/10 deg centigrade]
+ain, 1, temp_out_C10, 0, Current outtake temperature [1/10 deg centigrade]
+ain, 2, flow_lmin10, 0, Current water flow [1/10 l/min]
+ain, 3, power_kW10, 0, Current power consumption [1/10 kW]
+ain, 4, power_PC, 0, Current power consumption [percent]
+ain, 200, fill_remain_l, 0, Remaining volume to fill liter
+ain, 201, fill_remain_s, 0, Remaining time to fill seconds
+ain, 300, pu_error, 0, Device error code (0 = no error)
+ain, 301, ctrl_val, 0, Control value (normal value 2800)
+ain, 400, end, 0xC1A6, Modbus register mapping minor version (const)
+ain, 401, end, 1, Modbus register mapping version (const)
+ain, 402, end, 0, Modbus register mapping minor version (const)
+ain, 500, epoch_s, 0, Time of day as UNIX epoch in seconds
+aout, 0, temp_setpoint_C10, 0, Outtake temperature setpoint [1/10 deg centigrade]
+aout, 1, flow_max_lmin10, 0, Maximum volume per time at outtake [1/10 l/min]
+aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
+aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
+aout, 403, modbus_server_addr, 0, First server address
+aout, 404, modbus_server_addr, 1, Second server address
+aout, 405, modbus_server_addr, 2, Third server address
+aout, 406, modbus_server_addr, 3, Fourth server address
+aout, 407, modbus_server_addr, 4, Fifth server address
+aout, 408, modbus_broadcast_addr, 0, DLE broadcast address
+aout, 410, modbus_epoch_s, 0, DLE broadcast address
+din, 0, is_power_limit, 0, Flag if this device is on power limit.
+din, 1, is_temp_setpoint_max, 0, Is setpoint at maximum
+din, 2, is_temp_setpoint_max_scalding_protection, 0, Is scalding protection
+din, 3, is_jumper_lock, 0, Flag if jumper lock is active
+din, 200, is_therm_treat_inhibit, 0, Flag if thermal treatment is inhibited
+din, 201, is_therm_treat_active, 0, Flag if thermal treatment is active
+din, 202, filling_active, 0, Flag if tub filling is active.
+din, 203, is_fill_amount, 0, Flag if fill amount is given
+din, 204, is_fill_time, 0, Flag if filling time is given
+din, 300, has_RM, 0, Flag if this device has a radio module installed.
+din, 301, has_VC, 0, Flag if this device has a valve installed.
+din, 302, is_fast_boot, 0, Fast boot ???
+din, 303, leakage, 0, Flag if leakage is detected
+din, 304, vc_is_closed, 0, Flag if valve is closed
+din, 500, net_sntp_client_up, 0, Flag if SNTP client is running
+din, 501, wlan_sta_bssid_set, 0, Flag if WLAN BSSID is set
+din, 600, hw_tft_touch, 0, Flag if this HW provides a TFT/GUI (DSX Touch)
+din, 601, gui_screens_up, 0, Flag if all screens are up
+dout, 100, timer_do_stop_flow, 0, Flag if timer shall stop flow
+dout, 101, timer_stop_if_flow0, 0, Flag if timer shall stop at no flow
+dout, 500, wlan_ap, 0, Flag if WLAN shall operate as AP
+dout, 501, wlan_restart, 0, Trigger WLAN restart
+dout, 502, wlan_setup, 0, Trigger WLAN setup
+dout, 503, wlan_scan, 0, Trigger WLAN scan
+dout, 504, wlan_active, 0, Flag if WLAN shall be active
+dout, 505, net_sntp_from_dhcp, 0, Flag if SNTP servers from DHCP shall be used.
+dout, 506, daylight_saving, 0, Flag if daylight saving shall be applied.
+dout, 507, net_rest_api, 0, Flag if REST API shall be started.
+dout, 508, net_rest_api_tls, 0, Flag if REST shall use TLS encryption.
+dout, 509, net_rest_api_auth, 0, Flag if REST shall check for authentication.
+dout, 510, update_use_beta, 0, Flag if updates shall use BETA firmware.
+dout, 511, net_aws, 0, AWS active (not implemented)
+dout, 512, net_matter_api, 0, Matter active (not implemented)
+dout, 600, home_flow, 0, Flag if home screen shall show flow limit
+dout, 601, home_time, 0, Flag if home screen shall show time
+dout, 602, display_bright_flow, 0, Water flow finish idle state of display light.
+dout, 603, sound, 0, Flag if device shall make sounds
+dout, 604, start_jingle, 0, Flag if device shall play a start jingle
+dout, 605, stat_show_costs, 0, Flag if consts shall be shown in statistics.
