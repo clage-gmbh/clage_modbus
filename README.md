@@ -11,10 +11,10 @@ As part of the [ISH 2023, CLAGE announced](https://www.haustechnikdialog.de/News
 * REST API documentation can be found in [clage-gmbh/rest_api](https://github.com/clage-gmbh/rest_api).
 * Modbus API documentation can be found in [this GitHub Wiki](../../wiki/Home.md).
 
+The mapping of the device parameters to the modbus register addresses is provided as a [CSV table](clage_modbus/clage_modbus_mapping.csv) and a [Python map](clage_modbus/clage_modbus_mapping.py).
+
 For using the Modbus RTU interface there is an open source [command line tool written in Python](clage_modbus/clage_modbus.py) to test and demonstrate the usage.
 The command line tools can also be loaded as a module providing a Python class to access parameters of a CLAGE device.
-
-The mapping of the device parameters to the modbus register addresses is provided as a [CSV table](clage_modbus/clage_modbus_mapping.csv) and a [Python map](clage_modbus/clage_modbus_mapping.py).
 
 ## License
 
