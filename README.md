@@ -1,4 +1,6 @@
-# CLAGE GmbH devices Modbus API
+<p align="center"><img src="https://www.clage.com/assets/gfx/logo.svg" alt="CLAGE GmbH" width="150"><i>Modbus</i></p>
+
+# CLAGE GmbH Modbus API
 
 ## Hardware
 
