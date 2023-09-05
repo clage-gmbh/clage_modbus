@@ -9,7 +9,7 @@ As part of the [ISH 2023, CLAGE announced](https://www.haustechnikdialog.de/News
 ## Documentation
 
 * REST API documentation can be found in [clage-gmbh/rest_api](https://github.com/clage-gmbh/rest_api).
-* Modbus API documentation can be found in [this GitHub Wiki](../../wiki/Home.md).
+* Modbus API documentation can be found in [this GitHub Wiki](../../wiki).
 
 The mapping of the device parameters to the modbus register addresses is provided as a [CSV table](clage_modbus/clage_modbus_mapping.csv) and a [Python map](clage_modbus/clage_modbus_mapping.py).
 
