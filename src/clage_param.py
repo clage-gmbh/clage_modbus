@@ -45,6 +45,7 @@ clage_param_map = {
 "temp_in_C10": ["u16", "C10"],
 "temp_out_C10": ["u16", "C10"],
 "temp_setpoint_C10": ["u16", "C10main"],
+"temp_setpoint_max_scalding_protection_C10": ["u16", "C10max"],
 "timer_do_stop_flow": ["bool", "none"],
 "timer_stop_if_flow0": ["bool", "none"],
 "total_energy_Wh": ["u32", "Wh"],

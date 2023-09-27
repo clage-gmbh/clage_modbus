@@ -3,9 +3,9 @@ ain, 1, temp_out_C10, 0, Current outtake temperature [1/10 deg centigrade]
 ain, 2, flow_lmin10, 0, Current water flow [1/10 l/min]
 ain, 3, power_kW10, 0, Current power consumption [1/10 kW]
 ain, 4, power_PC, 0, Current power consumption [percent]
-ain, 0, total_energy_Wh, 0, Total energy consumed 32 bit [Wh]
-ain, 2, total_volume_l, 0, Total water consumed 32 bit [l]
-ain, 4, total_tap_count, 0, Count of water tap usages 32 bit
+ain, 100, total_energy_Wh, 0, Total energy consumed 32 bit [Wh]
+ain, 102, total_volume_l, 0, Total water consumed 32 bit [l]
+ain, 104, total_tap_count, 0, Count of water tap usages 32 bit
 ain, 200, fill_remain_l, 0, Remaining volume to fill liter
 ain, 201, fill_remain_s, 0, Remaining time to fill seconds
 ain, 300, pu_error, 0, Device error code (0 = no error)
@@ -16,6 +16,7 @@ ain, 402, end, 0, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 aout, 0, temp_setpoint_C10, 0, Outtake temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outtake [1/10 l/min]
+aout, 2, temp_setpoint_max_scalding_protection_C10, 0, Maximum temperature setpoint [1/10 deg centigrade]
 aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
 aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
 aout, 403, modbus_server_addr, 0, First server address
