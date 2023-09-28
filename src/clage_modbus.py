@@ -28,7 +28,7 @@ import ipaddress
 
 class clage_modbus:
     # Version of this class and tool.
-    c_version = '0.1.7'
+    c_version = '0.1.8'
     c_clage_magic = 0xC1A6
 
     def examples(void):
