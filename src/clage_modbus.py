@@ -280,23 +280,19 @@ But the order of execution is always read, write and after that run.
                     f'Using Modbus RTU {self.args.uart},{self.args.baudrate},{self.args.parity}')
         try:
             if not self.modbus_client.connect():
-                self.print_error('failed to connect')
-                sys.exit(2)
+                raise Exception("failed to connect")
             rr = self.modbus_client.read_input_registers(
                 400, 3, unit=self.args.server_id)
             if rr.isError():
-                self.print_error(
+                raise Exception(
                     f'connection failed or not a CLAGE device: {rr}')
-                sys.exit(2)
             self.map_version = rr.registers
         except AttributeError as e:
             self.print_error(f'{e}')
-            self.print_error(f'make sure {self.args.uart} is available.')
-            sys.exit(2)
+            raise Exception(f'make sure {self.args.uart} is available.')
         if self.c_clage_magic != self.map_version[0]:
-            self.print_error(
+            raise Exception(
                 f'not a CLAGE device AIN[400] != 0x{self.c_clage_magic:X}')
-            sys.exit(2)
         if self.args.version:
             self.print_version()
         # List of signal names
@@ -682,22 +678,31 @@ But the order of execution is always read, write and after that run.
 
 
 def main():
-    try:
-        c = clage_modbus()
-        # Parse command line.
-        c.check_args()
-        # Open serial device
-        c.connect()
-        # Read from CLAGE device
-        c.do_read()
-        # Write to CLAGE device
-        c.do_write()
-        # Run sequence if any
-        c.do_run()
-    # Finish
-    except KeyboardInterrupt:
-        pass
-    sys.exit(0)
+    while True:
+        try:
+            c = clage_modbus()
+            # Parse command line.
+            c.check_args()
+            # Open serial device
+            c.connect()
+            # Read from CLAGE device
+            c.do_read()
+            # Write to CLAGE device
+            c.do_write()
+            # Run sequence if any
+            c.do_run()
+        # Finish by keyboard
+        except KeyboardInterrupt:
+            print("finish")
+            sys.exit(0)
+        # Finish or retry by any other exception.
+        except Exception as e:
+            print(e)
+            if not c.args.cycle:
+                print("finish")
+                sys.exit(0)
+        print("restart ...")
+        time.sleep(2)
 
 
 # Start main() if called directly (not included)
