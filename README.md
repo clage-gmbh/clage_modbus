@@ -2,6 +2,9 @@
 
 # CLAGE GmbH Modbus API
 
+* [CLAGE Modbus Wiki](../../wiki)
+* [CLAGE Modbus mapping table](../blob/main/src/clage_modbus_mapping.csv)
+
 ## Hardware
 
 As part of the [ISH 2023, CLAGE announced](https://www.haustechnikdialog.de/News/27889/Neue-E-Durchlauferhitzer-auf-der-ISH-2023) a new device called **ISX** providing [**REST API**](https://github.com/clage-gmbh/rest_api) by WLAN and **Modbus RTU** by wire.
