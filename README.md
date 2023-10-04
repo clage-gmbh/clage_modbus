@@ -2,8 +2,9 @@
 
 # CLAGE GmbH Modbus API
 
-* [CLAGE Modbus Wiki](../../wiki)
-* [CLAGE Modbus mapping table](../blob/main/src/clage_modbus_mapping.csv)
+* [**Mapping Table**](../blob/main/src/clage_modbus_mapping.csv)
+* [Modbus **Wiki**](../../wiki)
+  * [Python Modbus **Tool/Module**](../../wiki/clage_modbus.py)
 
 ## Hardware
 
