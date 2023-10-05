@@ -46,6 +46,17 @@ din, 600, hw_tft_touch, 0, Flag if this HW provides a TFT/GUI (DSX Touch)
 din, 601, gui_screens_up, 0, Flag if all screens are up
 dout, 100, timer_do_stop_flow, 0, Flag if timer shall stop flow
 dout, 101, timer_stop_if_flow0, 0, Flag if timer shall stop at no flow
+dout, 300, system_do_reboot, 0, Flag to trigger new start of CPU
+dout, 301, system_do_reset, 0, Flag to trigger factory reset
+dout, 302, system_do_reboot_next, 0, Flag to trigger start of second partition
+dout, 310, update_do_all, 0, Flag to trigger complete online update
+dout, 311, update_use_beta, 0, Flag if beta software shall be used
+dout, 312, update_do_check, 0, Flag to trigger checking for update
+dout, 313, update_check_daily, 0, Flag if daily check shall be performed
+dout, 314, update_do_app, 0, Flag to trigger application download
+dout, 315, update_do_www, 0, Flag to trigger web-UI content download
+dout, 400, modbus_test_init, 0, Flag if initial test sequence shall be transmitted
+dout, 401, modbus_test, 0, Flag if continuous test sequence shall be transmitted
 dout, 500, wlan_ap, 0, Flag if WLAN shall operate as AP
 dout, 501, wlan_restart, 0, Trigger WLAN restart
 dout, 502, wlan_setup, 0, Trigger WLAN setup

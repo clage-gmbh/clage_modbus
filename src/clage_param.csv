@@ -28,6 +28,8 @@ modbus_broadcast_addr, u8, none
 modbus_epoch_s, u64, epoch
 modbus_parity, u8, parity
 modbus_server_addr, u8, none
+modbus_test, bool, none
+modbus_test_init, bool, none
 net_aws, bool, none
 net_matter_api, bool, none
 net_rest_api_auth, bool, none
@@ -41,6 +43,9 @@ pu_error, u8, none
 sound, bool, none
 start_jingle, bool, none
 stat_show_costs, bool, none
+system_do_reboot, bool, none
+system_do_reboot_next, bool, none
+system_do_reset, bool, none
 temp_in_C10, u16, C10
 temp_out_C10, u16, C10
 temp_setpoint_C10, u16, C10main
@@ -50,6 +55,11 @@ timer_stop_if_flow0, bool, none
 total_energy_Wh, u32, Wh
 total_tap_count, u32, none
 total_volume_l, u32, l
+update_check_daily, bool, none
+update_do_all, bool, none
+update_do_app, bool, none
+update_do_check, bool, none
+update_do_www, bool, none
 update_use_beta, bool, none
 vc_is_closed, bool, none
 wlan_active, bool, none
