@@ -698,9 +698,9 @@ def main():
         # Finish or retry by any other exception.
         except Exception as e:
             print(e)
-            if not c.args.cycle:
-                print("finish")
-                sys.exit(0)
+        if not c.args.cycle:
+            print("finish")
+            sys.exit(0)
         print("restart ...")
         time.sleep(2)
 
