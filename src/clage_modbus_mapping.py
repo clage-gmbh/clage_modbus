@@ -1,6 +1,6 @@
 clage_modbus_map = [{
-("temp_in_C10", 0): ["ain", 0, "Current intake temperature [1/10 deg centigrade]"],
-("temp_out_C10", 0): ["ain", 1, "Current outtake temperature [1/10 deg centigrade]"],
+("temp_in_C10", 0): ["ain", 0, "Current inlet temperature [1/10 deg centigrade]"],
+("temp_out_C10", 0): ["ain", 1, "Current outlet temperature [1/10 deg centigrade]"],
 ("flow_lmin10", 0): ["ain", 2, "Current water flow [1/10 l/min]"],
 ("power_kW10", 0): ["ain", 3, "Current power consumption [1/10 kW]"],
 ("power_PC", 0): ["ain", 4, "Current power consumption [percent]"],
@@ -15,8 +15,8 @@ clage_modbus_map = [{
 ("end", 1): ["ain", 401, "Modbus register mapping version (const)"],
 ("end", 0): ["ain", 402, "Modbus register mapping minor version (const)"],
 ("epoch_s", 0): ["ain", 500, "Time of day as UNIX epoch 64 bit [s]"],
-("temp_setpoint_C10", 0): ["aout", 0, "Outtake temperature setpoint [1/10 deg centigrade]"],
-("flow_max_lmin10", 0): ["aout", 1, "Maximum volume per time at outtake [1/10 l/min]"],
+("temp_setpoint_C10", 0): ["aout", 0, "Outlet temperature setpoint [1/10 deg centigrade]"],
+("flow_max_lmin10", 0): ["aout", 1, "Maximum volume per time at outlet [1/10 l/min]"],
 ("temp_setpoint_max_scalding_protection_C10", 0): ["aout", 2, "Maximum temperature setpoint [1/10 deg centigrade]"],
 ("modbus_baudrate", 0): ["aout", 400, "UART symbols per second for EIA-485 usage."],
 ("modbus_parity", 0): ["aout", 402, "UART parity (0:none; 1:odd; 2:even) for EIA-485."],
@@ -77,4 +77,6 @@ clage_modbus_map = [{
 ("sound", 0): ["dout", 603, "Flag if device shall make sounds"],
 ("start_jingle", 0): ["dout", 604, "Flag if device shall play a start jingle"],
 ("stat_show_costs", 0): ["dout", 605, "Flag if consts shall be shown in statistics."],
+("devel_log_cpu_temp", 0): ["dout", 700, "Flag if CPU temperature shall be logged."],
+("devel_update_test_feed", 0): ["dout", 701, "Flag if developer test feed shall be used for update"],
 }]

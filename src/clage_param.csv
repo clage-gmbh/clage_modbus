@@ -1,5 +1,7 @@
 ctrl_val, u16, u16ctrl
 daylight_saving, bool, none
+devel_log_cpu_temp, bool, none
+devel_update_test_feed, bool, none
 display_bright_flow, bool, none
 epoch_s, u64, epoch
 filling_active, bool, none

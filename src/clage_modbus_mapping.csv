@@ -1,5 +1,5 @@
-ain, 0, temp_in_C10, 0, Current intake temperature [1/10 deg centigrade]
-ain, 1, temp_out_C10, 0, Current outtake temperature [1/10 deg centigrade]
+ain, 0, temp_in_C10, 0, Current inlet temperature [1/10 deg centigrade]
+ain, 1, temp_out_C10, 0, Current outlet temperature [1/10 deg centigrade]
 ain, 2, flow_lmin10, 0, Current water flow [1/10 l/min]
 ain, 3, power_kW10, 0, Current power consumption [1/10 kW]
 ain, 4, power_PC, 0, Current power consumption [percent]
@@ -14,8 +14,8 @@ ain, 400, end, 0xC1A6, Modbus register mapping minor version (const)
 ain, 401, end, 1, Modbus register mapping version (const)
 ain, 402, end, 0, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
-aout, 0, temp_setpoint_C10, 0, Outtake temperature setpoint [1/10 deg centigrade]
-aout, 1, flow_max_lmin10, 0, Maximum volume per time at outtake [1/10 l/min]
+aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
+aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
 aout, 2, temp_setpoint_max_scalding_protection_C10, 0, Maximum temperature setpoint [1/10 deg centigrade]
 aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
 aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
@@ -76,3 +76,5 @@ dout, 602, display_bright_flow, 0, Water flow finish idle state of display light
 dout, 603, sound, 0, Flag if device shall make sounds
 dout, 604, start_jingle, 0, Flag if device shall play a start jingle
 dout, 605, stat_show_costs, 0, Flag if consts shall be shown in statistics.
+dout, 700, devel_log_cpu_temp, 0, Flag if CPU temperature shall be logged.
+dout, 701, devel_update_test_feed, 0, Flag if developer test feed shall be used for update
