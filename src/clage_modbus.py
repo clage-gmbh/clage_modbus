@@ -335,6 +335,8 @@ But the order of execution is always read, write and after that run.
             return 4
         elif 'i64' == type:
             return 4
+        elif 'string' == type:
+            return 1  # at least but may be more
         else:
             assert False, f'unknown parameter type: {type}'
 
@@ -439,6 +441,10 @@ But the order of execution is always read, write and after that run.
                 return payload.decode_64bit_uint()
             elif 'i64' == type:
                 return payload.decode_64bit_int()
+            elif 'string' == type:
+                # TODO: Find tailing zero ?
+                size = len(payload._payload) - payload._pointer
+                return payload.decode_string(size)
             else:
                 assert False, f'unknown parameter type: {type}'
 
@@ -542,6 +548,9 @@ But the order of execution is always read, write and after that run.
                 payload.add_64bit_uint(value)
             elif 'i64' == type:
                 payload.add_64bit_int(value)
+            elif 'string' == type:
+                payload.add_string(value)
+                payload.add_8bit_uint(0)
             else:
                 assert False, f'unknown parameter type: {type}'
             if self.args.verbose:

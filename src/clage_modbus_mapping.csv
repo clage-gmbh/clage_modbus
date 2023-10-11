@@ -10,6 +10,7 @@ ain, 200, fill_remain_l, 0, Remaining volume to fill liter
 ain, 201, fill_remain_s, 0, Remaining time to fill seconds
 ain, 300, pu_error, 0, Device error code (0 = no error)
 ain, 301, ctrl_val, 0, Control value (normal value 2800)
+ain, 350, app_version, 0, Application version string
 ain, 400, end, 0xC1A6, Modbus register mapping minor version (const)
 ain, 401, end, 1, Modbus register mapping version (const)
 ain, 402, end, 0, Modbus register mapping minor version (const)
@@ -26,6 +27,7 @@ aout, 406, modbus_server_addr, 3, Fourth server address
 aout, 407, modbus_server_addr, 4, Fifth server address
 aout, 408, modbus_broadcast_addr, 0, DLE broadcast address
 aout, 410, modbus_epoch_s, 0, DLE broadcast address
+aout, 500, wlan_ssid, 0, WLAN SSID string
 din, 0, is_power_limit, 0, Flag if this device is on power limit.
 din, 1, is_temp_setpoint_max, 0, Is setpoint at maximum
 din, 2, is_temp_setpoint_max_scalding_protection, 0, Is scalding protection
@@ -67,9 +69,8 @@ dout, 506, daylight_saving, 0, Flag if daylight saving shall be applied.
 dout, 507, net_rest_api, 0, Flag if REST API shall be started.
 dout, 508, net_rest_api_tls, 0, Flag if REST shall use TLS encryption.
 dout, 509, net_rest_api_auth, 0, Flag if REST shall check for authentication.
-dout, 510, update_use_beta, 0, Flag if updates shall use BETA firmware.
-dout, 511, net_aws, 0, AWS active (not implemented)
-dout, 512, net_matter_api, 0, Matter active (not implemented)
+dout, 510, net_aws, 0, AWS active (not implemented)
+dout, 511, net_matter_api, 0, Matter active (not implemented)
 dout, 600, home_flow, 0, Flag if home screen shall show flow limit
 dout, 601, home_time, 0, Flag if home screen shall show time
 dout, 602, display_bright_flow, 0, Water flow finish idle state of display light.
