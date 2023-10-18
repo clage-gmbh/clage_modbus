@@ -280,6 +280,8 @@ But the order of execution is always read, write and after that run.
                     f'Using Modbus RTU {self.args.uart},{self.args.baudrate},{self.args.parity}')
         try:
             if not self.modbus_client.connect():
+                if self.args.verbose:
+                    print('modbus_client.connect() failed')
                 raise Exception("failed to connect")
             rr = self.modbus_client.read_input_registers(
                 400, 3, unit=self.args.server_id)
@@ -455,7 +457,7 @@ But the order of execution is always read, write and after that run.
         (type, unit) = clage_param.clage_param_map[param_name]
         if 'epoch' == unit:
             return self.isotime(value)
-        elif unit in ('C10', 'C10main', 'limn10', 'lmin10max', 'kW10'):
+        elif unit in ('C10', 'C10main', 'lmin10', 'lmin10max', 'kW10'):
             return '%.1f' % (float(value)/10.0)
         else:
             return f'{value}'
@@ -567,7 +569,7 @@ But the order of execution is always read, write and after that run.
             # Assume time to be in ISO format.
             self.set_raw_value(
                 param_name, dateutil.parser.isoparse(base).timestamp())
-        elif unit in ('C10', 'C10main', 'limn10', 'lmin10max'):
+        elif unit in ('C10', 'C10main', 'lmin10', 'lmin10max'):
             self.set_raw_value(param_name, int(round(float(base)*10.0)))
         else:
             assert False, f'no base value supported for parameter {param_name}'
