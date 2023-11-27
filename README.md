@@ -10,9 +10,7 @@ Automatically translated versions <span class="notranslate" translate="no">[**DE
 
 ## Hardware
 
-As part of the [ISH 2023, CLAGE announced](https://www.haustechnikdialog.de/News/27889/Neue-E-Durchlauferhitzer-auf-der-ISH-2023) a new device called **ISX** providing [**REST API**](https://github.com/clage-gmbh/rest_api) by WLAN and **Modbus RTU** by wire.
-
-* [ISX in CLAGE Product Guide](https://www.clage.com/de/Mediacenter/b432f34c5a997c8e7c806a895ecc5e25/CLAGE-Produkt-Guide-de.pdf) *page 4 upper left*
+* [CLAGE GmbH E-Moduldurchlauferhitzer ISX](https://www.clage.com/de/produkte/e-moduldurchlauferhitzer) providing [**REST API**](https://github.com/clage-gmbh/rest_api) by WLAN and **Modbus RTU** by wire.
 
 ## Documentation
 
