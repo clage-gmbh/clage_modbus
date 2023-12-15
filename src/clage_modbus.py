@@ -8,8 +8,12 @@ from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.payload import BinaryPayloadBuilder
 # What type of modbus client do we need:
-from pymodbus.client.sync import ModbusTcpClient
-from pymodbus.client.sync import ModbusSerialClient
+try:
+    from pymodbus.client.sync import ModbusTcpClient
+    from pymodbus.client.sync import ModbusSerialClient
+except ImportError:
+    from pymodbus.client import ModbusTcpClient
+    from pymodbus.client import ModbusSerialClient
 import datetime
 import logging
 import difflib
