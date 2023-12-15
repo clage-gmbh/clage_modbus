@@ -104,9 +104,10 @@ But the order of execution is always read, write and after that run.
         if sys.platform.startswith('win'):
             ports = ['COM%s' % (i + 1) for i in range(256)]
         elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-            ports = glob.glob('/dev/ttyUSB*')
+            # Only take care of first 100 numbered devices (no named symbolic links et al.)
+            ports = glob.glob('/dev/ttyUSB[0-9]') + glob.glob('/dev/ttyUSB[0-9][0-9]')
         elif sys.platform.startswith('darwin'):
-            ports = glob.glob('/dev/tty.*')
+            ports = glob.glob('/dev/tty.[0-9]') + glob.glob('/dev/tty.[0-9][0-9]')
         else:
             raise EnvironmentError('Unsupported platform')
 
@@ -116,7 +117,11 @@ But the order of execution is always read, write and after that run.
                 s = serial.Serial(port)
                 s.close()
                 result.append(port)
-            except (OSError, serial.SerialException):
+            except (OSError, serial.SerialException) as e:
+                print(f'serial exception: {e}')
+                pass
+            except e:
+                print(f'exception: {e}')
                 pass
         return sorted(result, key=lambda s: int(re.search(r'\d+', s).group()))
 
