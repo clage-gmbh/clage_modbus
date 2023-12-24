@@ -9,6 +9,17 @@ modbus:
   message_wait_milliseconds: 30
   retries: 3
   timeout: 5
+  binary_sensors:
+    - name: clage_isx_leakage
+      slave: 97
+      input_type: discrete_input
+      address: 303
+      device_class: problem
+    - name: clage_isx_valve_close
+      slave: 97
+      input_type: discrete_input
+      address: 304
+      device_class: problem
   climates:
     - name: clage_isx_setpoint_temp
       slave: 97
@@ -17,6 +28,20 @@ modbus:
       target_temp_register: 0
       data_type: uint16
       scan_interval: 2
+      offset: 0
+      precision: 1
+      scale: 0.1
+      temp_step: 0.5
+      max_temp: 60
+      min_temp: 20
+      temperature_unit: C
+    - name: clage_isx_max_setpoint_temp
+      slave: 97
+      input_type: holding
+      address: 2
+      target_temp_register: 2
+      data_type: uint16
+      scan_interval: 10
       offset: 0
       precision: 1
       scale: 0.1
@@ -51,7 +76,7 @@ modbus:
       max_value: 80
       min_value: 0
       unit_of_measurement: °C
-    - name: clage_water_flow
+    - name: clage_isx_water_flow
       slave: 97
       input_type: input
       address: 2
@@ -64,7 +89,7 @@ modbus:
       max_value: 12
       min_value: 0
       unit_of_measurement: l/min
-    - name: clage_power_comsumption
+    - name: clage_isx_power_comsumption
       slave: 97
       input_type: input
       address: 3
@@ -77,3 +102,8 @@ modbus:
       max_value: 27
       min_value: 0
       unit_of_measurement: kW
+  switches:
+    - name: clage_isx_wlan_ap
+      slave: 97
+      write_type: coil
+      address: 500
