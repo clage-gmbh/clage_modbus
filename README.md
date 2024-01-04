@@ -24,7 +24,7 @@ The command line tools can also be loaded as a module providing a Python class t
 
 ## License
 
-Copyright 2023 CLAGE GmbH, Germany
+Copyright © 2023 CLAGE GmbH, Germany
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
