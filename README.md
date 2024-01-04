@@ -10,7 +10,7 @@ Automatically translated versions <span class="notranslate" translate="no">[**DE
 
 ## Hardware
 
-* [CLAGE GmbH E-Moduldurchlauferhitzer ISX](https://www.clage.com/de/produkte/e-moduldurchlauferhitzer) providing [**REST API**](https://github.com/clage-gmbh/rest_api) by WLAN and **Modbus RTU** by wire.
+* [CLAGE GmbH E-Moduldurchlauferhitzer ISX](https://www.clage.com/de/produkte/e-moduldurchlauferhitzer/isx) providing [**REST API**](https://github.com/clage-gmbh/rest_api) by WLAN and **Modbus RTU** by wire.
 
 ## Documentation
 
