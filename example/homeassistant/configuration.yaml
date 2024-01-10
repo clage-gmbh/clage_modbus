@@ -107,3 +107,8 @@ modbus:
       slave: 97
       write_type: coil
       address: 500
+    - name: clage_isx_wlan_active
+      slave: 97
+      write_type: coil
+      address: 504
+
