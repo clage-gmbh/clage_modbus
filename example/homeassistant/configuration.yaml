@@ -102,6 +102,12 @@ modbus:
       max_value: 27
       min_value: 0
       unit_of_measurement: kW
+    - name: clage_isx_error
+      slave: 97
+      input_type: input
+      address: 300
+      data_type: uint16
+      scan_interval: 2
   switches:
     - name: clage_isx_wlan_ap
       slave: 97
