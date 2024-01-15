@@ -1,0 +1,48 @@
+blueprint:
+  name: RGB bulb controlled by IWH
+  domain: automation
+  input:
+    iwh_setpoint_entity:
+      name: Entity of the IWH temperature setpoint
+      selector:
+        entity:
+          filter:
+            domain: climate
+    iwh_flow_entity:
+      name: Entity of the IWH flow measurement
+      selector:
+        entity:
+          filter:
+            domain: sensor
+    rbg_light_bulb_entity:
+      name: Entity of RGB light bulp
+      selector:
+        entity:
+          filter:
+            domain: light
+
+# If IWH temperatur of flow changed, adjust brightness and hue of RGB bulb
+mode: single
+description: Control an RGB bulb from temperature und flow of a instantaneous water heater
+variables:
+  # Make input my_input available as a script level variable
+  temp_entity: !input iwh_setpoint_entity
+  flow_entity: !input iwh_flow_entity
+trigger:
+  - platform: state
+    entity_id: !input iwh_setpoint_entity
+  - platform: state
+    entity_id: !input iwh_flow_entity
+condition: []
+action:
+  - service: light.turn_on
+    target:
+      entity_id: !input rbg_light_bulb_entity
+    data:
+      hs_color:
+        - >-
+          {{ 240 + 120 * (state_attr(temp_entity, 'temperature') - state_attr(temp_entity, 'min_temp')) /
+                         (state_attr(temp_entity, 'max_temp')    - state_attr(temp_entity, 'min_temp')) }}
+        - 80
+      brightness_pct: >-
+        {{ 20 + 80 * states(flow_entity) | float / 12 }}
