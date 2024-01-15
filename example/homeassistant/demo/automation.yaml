@@ -1,0 +1,28 @@
+- id: '1704891675901'
+  alias: Lastabwurf TWIN zu DSX
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.twin_links_aktueller_durchfluss
+    above: 2
+  condition: []
+  action:
+  - service: shell_command.send_durchfluss_60
+    data: {}
+    response_variable: Lastabwurf
+  mode: single
+- id: '1704892893763'
+  alias: Lastabwurf beendet
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.twin_links_aktueller_durchfluss
+    below: 2
+  condition: []
+  action:
+  - service: shell_command.send_durchfluss_auto
+    data: {}
+    response_variable: Lastabwurf beendet
+  mode: single

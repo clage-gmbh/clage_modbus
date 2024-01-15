@@ -1,0 +1,384 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+shell_command:
+  send_curl_request: 'curl -k -u admin:geheim https://192.168.178.49/devices/setpoint/1 -X PUT -d data={{ states("input_number.durchlauferhitzer") | replace(".","") }}'
+  send_durchfluss_60: 'curl -k -s -u admin:geheim https://192.168.178.49/devices/setup/1 -X PUT -d flowMax={{ states("input_number.maximaler_durchfluss_last") }}'
+  send_durchfluss_auto: 'curl -k -s -u admin:geheim https://192.168.178.49/devices/setup/1 -X PUT -d flowMax={{ states("input_number.maximaler_durchfluss_auto") }}' 
+
+# Rest DSX Touch API
+rest:
+  - resource: https://192.168.178.49/devices/setpoint/1
+    headers:
+      Host: https://192.168.178.49
+      Authorization: Basic YWRtaW46Z2VoZWlt
+      Content-Type: "application/x-www-form-urlencoded"
+    verify_ssl: false 
+    method: GET
+    scan_interval: 5
+    sensor:
+      - name: "DSX Setpoint"
+        unique_id: "DSX_setpoint" 
+        value_template: '{{ value_json["devices"][0].status.setpoint / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "DSX Temperaturlimit"
+        unique_id: "DSX_tLimit"
+        value_template: '{{ value_json["devices"][0].status.tLimit / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "DSX Temperatur In"
+        unique_id: "DSX_tIn"
+        value_template: '{{ value_json["devices"][0].status.tIn / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "DSX Temperatur Out"
+        unique_id: "DSX_tOut"
+        value_template: '{{ value_json["devices"][0].status.tOut / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "DSX aktueller Durchfluss"
+        unique_id: "DSX_flow"
+        value_template: '{{ value_json["devices"][0].status.flow / 10 }}'
+
+      - name: "DSX maximaler Durchfluss"
+        unique_id: "DSX_flowmax"
+        value_template: '{{ value_json["devices"][0].status.flowMax }}' 
+      
+      - name: "DSX aktuelle Leistung"
+        unique_id: "DSX_powerActual"
+        value_template: '{{ value_json["devices"][0].status.powerActual /10 }}' 
+        device_class: power
+        unit_of_measurement: "kW"
+
+      - name: "DSX Ventilstellung"
+        unique_id: "DSX_valvePos"
+        value_template: '{{ 100- value_json["devices"][0].status.valvePos }}'
+        unit_of_measurement: "%"
+
+      - name: "DSX Error"
+        unique_id: "DSX_error"
+        value_template: '{{ value_json["devices"][0].status.error }}'
+
+  - resource: https://192.168.178.50/devices/setpoint/1
+    headers:
+      Host: https://192.168.178.50
+      Authorization: Basic YWRtaW46Z2VoZWlt
+      Content-Type: "application/x-www-form-urlencoded"
+    verify_ssl: false 
+    method: GET
+    scan_interval: 5
+    sensor:
+      - name: "TWIN links Setpoint"
+        unique_id: "DSXTwinlinks_setpoint" 
+        value_template: '{{ value_json["devices"][0].status.setpoint / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN links Temperaturlimit"
+        unique_id: "DSXTwinlinks_tLimit"
+        value_template: '{{ value_json["devices"][0].status.tLimit / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN links Temperatur In"
+        unique_id: "DSXTwinlinks_tIn"
+        value_template: '{{ value_json["devices"][0].status.tIn / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN links Temperatur Out"
+        unique_id: "DSXTwinlinks_tOut"
+        value_template: '{{ value_json["devices"][0].status.tOut / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN links aktueller Durchfluss"
+        unique_id: "DSXTwinlinks_flow"
+        value_template: '{{ value_json["devices"][0].status.flow / 10 }}'
+
+      - name: "TWIN links maximaler Durchfluss"
+        unique_id: "DSXTwinlinks_flowmax"
+        value_template: '{{ value_json["devices"][0].status.flowMax }}' 
+      
+      - name: "TWIN links aktuelle Leistung"
+        unique_id: "DSXTwinlinks_powerActual"
+        value_template: '{{ value_json["devices"][0].status.powerActual /10 }}' 
+        device_class: power
+        unit_of_measurement: "kW"
+
+      - name: "TWIN links Ventilstellung"
+        unique_id: "DSXTwinlinks_valvePos"
+        value_template: '{{ value_json["devices"][0].status.valvePos }}'
+        unit_of_measurement: "%"
+
+      - name: "TWIN links Error"
+        unique_id: "DSXTwinlinks_error"
+        value_template: '{{ value_json["devices"][0].status.error }}' 
+
+  - resource: https://192.168.178.51/devices/setpoint/1
+    headers:
+      Host: https://192.168.178.51
+      Authorization: Basic YWRtaW46Z2VoZWlt
+      Content-Type: "application/x-www-form-urlencoded"
+    verify_ssl: false 
+    method: GET
+    scan_interval: 5
+    sensor:
+      - name: "TWIN rechts Setpoint"
+        unique_id: "DSXTwinrechts_setpoint" 
+        value_template: '{{ value_json["devices"][0].status.setpoint / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN rechts Temperaturlimit"
+        unique_id: "DSXTwinrechts_tLimit"
+        value_template: '{{ value_json["devices"][0].status.tLimit / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN rechts Temperatur In"
+        unique_id: "DSXTwinrechts_tIn"
+        value_template: '{{ value_json["devices"][0].status.tIn / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN rechts Temperatur Out"
+        unique_id: "DSXTwinrechts_tOut"
+        value_template: '{{ value_json["devices"][0].status.tOut / 10 }}'
+        device_class: temperature
+        unit_of_measurement: "°C"
+
+      - name: "TWIN rechts aktueller Durchfluss"
+        unique_id: "DSXTwinrechts_flow"
+        value_template: '{{ value_json["devices"][0].status.flow / 10 }}'
+
+      - name: "TWIN rechts maximaler Durchfluss"
+        unique_id: "DSXTwinrechts_flowmax"
+        value_template: '{{ value_json["devices"][0].status.flowMax }}' 
+      
+      - name: "TWIN rechts aktuelle Leistung"
+        unique_id: "DSXTwinrechts_powerActual"
+        value_template: '{{ value_json["devices"][0].status.powerActual /10 }}' 
+        device_class: power
+        unit_of_measurement: "kW"
+
+      - name: "TWIN rechts Ventilstellung"
+        unique_id: "DSXTwinrechts_valvePos"
+        value_template: '{{ value_json["devices"][0].status.valvePos }}'
+        unit_of_measurement: "%"
+
+      - name: "TWIN rechts Error"
+        unique_id: "DSXTwinrechts_error"
+        value_template: '{{ value_json["devices"][0].status.error }}' 
+
+
+sensor:
+- platform: rest
+  unique_id: "DSXTouch"
+  name: "DSX kWh total"
+  headers:
+    Host: https://192.168.178.49
+    Authorization: Basic YWRtaW46Z2VoZWlt
+    Content-Type: application/x-www-form-urlencoded
+  verify_ssl: false 
+  method: GET
+  scan_interval: 60
+  unit_of_measurement: kWh
+  state_class: total_increasing
+  device_class: energy
+  resource: https://192.168.178.49/devices/setup/1
+  value_template: '{{ value_json["devices"][0].setup.totalPowerConsumption / 1000 }}'
+  json_attributes_path: "$.devices[0].setup"
+  json_attributes:
+    - "totalWaterConsumption"
+    - "totalTappings"
+
+- platform: rest
+  unique_id: "DSX_log_energy"
+  name: "DSX log energy"
+  headers:
+    Host: https://192.168.178.49
+    Authorization: Basic YWRtaW46Z2VoZWlt
+    Content-Type: application/x-www-form-urlencoded
+  verify_ssl: false 
+  method: GET
+  scan_interval: 60
+  state_class: total_increasing
+  resource: https://192.168.178.49/devices/logs?showtotal=true
+  value_template: '{{ (value_json["devices"][0].logs[0].power) /1000}}'
+  device_class: energy
+  unit_of_measurement: "kWh"
+
+- platform: rest
+  unique_id: "DSX_total_water"
+  name: "DSX Total Water"
+  headers:
+    Host: https://192.168.178.49
+    Authorization: Basic YWRtaW46Z2VoZWlt
+    Content-Type: application/x-www-form-urlencoded
+  verify_ssl: false 
+  method: GET
+  scan_interval: 60
+  resource: https://192.168.178.49/devices/logs?showtotal=true
+  value_template: '{{ (value_json["devices"][0].logs[0].water) /100}}'
+  device_class: water
+  unit_of_measurement: "L"
+
+#- platform: rest
+#  unique_id: "DSX_setpoint"
+#  name: "DSX Setpoint Temp"
+#  headers:
+#    Host: https://192.168.178.49
+#    Authorization: Basic YWRtaW46Z2VoZWlt
+#    Content-Type: application/x-www-form-urlencoded
+#  verify_ssl: false 
+#  method: GET
+#  scan_interval: 60
+#  resource: https://192.168.178.49/devices/status/1
+#  value_template: '{{ (value_json["devices"][0].status.setpoint) /10 }}'
+
+# Example of a CLAGE ISX with slave ID 94 connected
+# to a Modbus RTU to Modbus TCP gateway 192.168.178.200
+
+modbus:
+  - name: modbus_hub
+    type: tcp
+    host: 192.168.178.44
+    port: 502
+    delay: 2
+    message_wait_milliseconds: 30
+    timeout: 1
+    binary_sensors:
+      - name: clage_isx_leakage
+        unique_id: clageisxleakage
+        slave: 90
+        input_type: discrete_input
+        address: 303
+        device_class: problem
+      - name: clage_isx_valve_close
+        unique_id: clageisxvalveclose
+        slave: 90
+        input_type: discrete_input
+        address: 304
+        device_class: problem
+    climates:
+      - name: clage_isx_setpoint_temp
+        slave: 90
+        input_type: holding
+        address: 0
+        target_temp_register: 0
+        data_type: uint16
+        scan_interval: 5
+        offset: 0
+        precision: 1
+        scale: 0.1
+        temp_step: 0.5
+        max_temp: 60
+        min_temp: 19
+        temperature_unit: C
+      - name: clage_isx_max_setpoint_temp
+        slave: 90
+        input_type: holding
+        address: 2
+        target_temp_register: 2
+        data_type: uint16
+        scan_interval: 5
+        offset: 0
+        precision: 1
+        scale: 0.1
+        temp_step: 0.5
+        max_temp: 60
+        min_temp: 20
+        temperature_unit: °C
+    sensors:
+      - name: clage_isx_intake_temp
+        slave: 90
+        input_type: input
+        address: 0
+        data_type: uint16
+        device_class: temperature
+        scan_interval: 2
+        offset: 0
+        precision: 1
+        scale: 0.1
+        max_value: 80
+        min_value: 0
+        unit_of_measurement: °C
+      - name: clage_isx_outtake_temp
+        slave: 90
+        input_type: input
+        address: 1
+        data_type: uint16
+        device_class: temperature
+        scan_interval: 5
+        offset: 0
+        precision: 1
+        scale: 0.1
+        max_value: 80
+        min_value: 0
+        unit_of_measurement: °C
+      - name: clage_isx_flow_max
+        unique_id: clageisxflowmax
+        slave: 90
+        input_type: holding
+        address: 1
+        scan_interval: 2
+        state_class: measurement
+        max_value: 255
+        min_value: 0
+      - name: clage_isx_water_flow
+        slave: 90
+        input_type: input
+        address: 2
+        data_type: uint16
+#       device_class: None
+        scan_interval: 2
+        offset: 0
+        precision: 1
+        scale: 0.1
+        max_value: 12
+        min_value: 0
+        unit_of_measurement: l/min
+      - name: clage_isx_power_comsumption
+        slave: 90
+        input_type: input
+        address: 3
+        data_type: uint16
+        device_class: power
+        scan_interval: 5
+        offset: 0
+        precision: 1
+        scale: 0.1
+        max_value: 27
+        min_value: 0
+        unit_of_measurement: kW
+      - name: clage_isx_total_energy_comsumption
+        slave: 90
+        input_type: input
+        address: 100
+        data_type: uint32
+        device_class: energy
+        state_class: total_increasing
+        scan_interval: 5
+        offset: 0
+        precision: 1
+        scale: 0.1
+        unit_of_measurement: Wh
+    switches:
+      - name: clage_isx_wlan_active
+        slave: 90
+        write_type: coil
+        address: 504
