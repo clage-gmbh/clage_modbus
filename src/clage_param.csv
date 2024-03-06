@@ -33,6 +33,12 @@ modbus_parity, u8, parity
 modbus_server_addr, u8, none
 modbus_test, bool, none
 modbus_test_init, bool, none
+mps0_kW10, u16, kW10
+mps1_kW10, u16, kW10
+mps2_kW10, u16, kW10
+mps3_kW10, u16, kW10
+mps_id_end, u8, u8mpsid
+mps_id, u8, u8mpsid
 net_aws, bool, none
 net_matter_api, bool, none
 net_rest_api_auth, bool, none
@@ -41,6 +47,7 @@ net_rest_api_tls, bool, none
 net_sntp_client_up, bool, none
 net_sntp_from_dhcp, bool, none
 power_kW10, u16, kW10
+power_max_kW10, u16, kW10
 power_PC, u8, PC
 pu_error, u8, none
 sound, bool, none
