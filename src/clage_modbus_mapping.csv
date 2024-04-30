@@ -25,6 +25,8 @@ ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
 aout, 2, temp_setpoint_max_scalding_protection_C10, 0, Maximum temperature setpoint [1/10 deg centigrade]
+aout, 3, temp_setpoint_delta_steps, 0, Outlet temperature setpoint change in steps.
+aout, 4, flow_max_delta_steps, 0, Maximum volume per time at outlet change in steps.
 aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
 aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
 aout, 403, modbus_server_addr, 0, First server address

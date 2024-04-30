@@ -26,6 +26,8 @@ clage_modbus_map = [{
 ("temp_setpoint_C10", 0): ["aout", 0, "Outlet temperature setpoint [1/10 deg centigrade]"],
 ("flow_max_lmin10", 0): ["aout", 1, "Maximum volume per time at outlet [1/10 l/min]"],
 ("temp_setpoint_max_scalding_protection_C10", 0): ["aout", 2, "Maximum temperature setpoint [1/10 deg centigrade]"],
+("temp_setpoint_delta_steps", 0): ["aout", 3, "Outlet temperature setpoint change in steps."],
+("flow_max_delta_steps", 0): ["aout", 4, "Maximum volume per time at outlet change in steps."],
 ("modbus_baudrate", 0): ["aout", 400, "UART symbols per second for EIA-485 usage."],
 ("modbus_parity", 0): ["aout", 402, "UART parity (0:none; 1:odd; 2:even) for EIA-485."],
 ("modbus_server_addr", 0): ["aout", 403, "First server address"],
