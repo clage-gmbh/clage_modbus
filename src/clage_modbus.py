@@ -287,13 +287,13 @@ But the order of execution is always read, write and after that run.
             if self.args.verbose:
                 print(
                     f'Using Modbus RTU {self.args.uart},{self.args.baudrate},{self.args.parity}')
+        # Check for CLAGE device magic number and mapping version.
         try:
             if not self.modbus_client.connect():
                 if self.args.verbose:
                     print('modbus_client.connect() failed')
                 raise Exception("failed to connect")
-            rr = self.modbus_client.read_input_registers(
-                400, 3, unit=self.args.server_id)
+            rr = self.get_ain(400, 3)
             if rr.isError():
                 raise Exception(
                     f'connection failed or not a CLAGE device: {rr}')
@@ -306,6 +306,22 @@ But the order of execution is always read, write and after that run.
                 f'not a CLAGE device AIN[400] != 0x{self.c_clage_magic:X}')
         if self.args.version:
             self.print_version()
+
+        # Check for word order (Old devices default was little endian)
+        self.is_word_big_endian = False
+        try:
+            rr = self.get_dout( 402, 1)
+            if rr.isError():
+                if self.args.verbose:
+                    print( "Old firmware. Assuming little word endianness.")
+            else:
+                self.is_word_big_endian = rr.bits[0]
+                if self.args.verbose:
+                    print( 'Word endianness ' + ('big' if self.is_word_big_endian else 'little'))
+        except AttributeError as e:
+            self.print_error(f'{e}')
+            raise Exception(f'failed to read word endianness')
+
         # List of signal names
         self.param_names = [name for (name, x) in self.get_map().keys()]
         self.param_names.sort()
@@ -431,7 +447,7 @@ But the order of execution is always read, write and after that run.
                 print(f'got payload {rr.registers} for {type} {unit}')
             # Parse payload according to parameter type.
             payload = BinaryPayloadDecoder.fromRegisters(
-                rr.registers, byteorder=Endian.Big, wordorder=Endian.Little)
+                rr.registers, byteorder=Endian.Big, wordorder=Endian.Big if self.is_word_big_endian else Endian.Little)
             if 'bool' == type:
                 return payload.decode_16bit_uint()
             elif 'u8' == type:
@@ -538,7 +554,7 @@ But the order of execution is always read, write and after that run.
             wr = self.set_dout(p_addr, [0 != value])
         else:
             payload = BinaryPayloadBuilder(
-                byteorder=Endian.Big, wordorder=Endian.Little)
+                byteorder=Endian.Big, wordorder=(Endian.Big if self.is_word_big_endian else Endian.Little))
             if 'bool' == type:
                 payload.add_16bit_uint(value)
             elif 'u8' == type:

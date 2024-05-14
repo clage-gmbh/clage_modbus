@@ -35,6 +35,7 @@ clage_param_map = {
 "modbus_server_addr": ["u8", "none"],
 "modbus_test": ["bool", "none"],
 "modbus_test_init": ["bool", "none"],
+"modbus_word_order_big_endian": ["bool", "none"],
 "mps0_kW10": ["u16", "kW10"],
 "mps1_kW10": ["u16", "kW10"],
 "mps2_kW10": ["u16", "kW10"],

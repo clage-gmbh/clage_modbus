@@ -20,7 +20,7 @@ ain, 315, mps3_kW10, 0, Maximum power at MPS level 3
 ain, 350, app_version, 0, Application version string
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
-ain, 402, end, 1, Modbus register mapping minor version (const)
+ain, 402, end, 2, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
@@ -35,7 +35,7 @@ aout, 405, modbus_server_addr, 2, Third server address
 aout, 406, modbus_server_addr, 3, Fourth server address
 aout, 407, modbus_server_addr, 4, Fifth server address
 aout, 408, modbus_broadcast_addr, 0, DLE broadcast address
-aout, 410, modbus_epoch_s, 0, DLE broadcast address
+aout, 410, modbus_epoch_s, 0, UNIX epoch time as provided by modbus
 aout, 500, wlan_ssid, 0, WLAN SSID string
 din, 0, is_power_limit, 0, Flag if this device is on power limit.
 din, 1, is_temp_setpoint_max, 0, Is setpoint at maximum
@@ -68,6 +68,7 @@ dout, 314, update_do_app, 0, Flag to trigger application download
 dout, 315, update_do_www, 0, Flag to trigger web-UI content download
 dout, 400, modbus_test_init, 0, Flag if initial test sequence shall be transmitted
 dout, 401, modbus_test, 0, Flag if continuous test sequence shall be transmitted
+dout, 402, modbus_word_order_big_endian, 0, Flag if modbus word order shall be big endian.
 dout, 500, wlan_ap, 0, Flag if WLAN shall operate as AP
 dout, 501, wlan_restart, 0, Trigger WLAN restart
 dout, 502, wlan_setup, 0, Trigger WLAN setup
