@@ -138,7 +138,13 @@ But the order of execution is always read, write and after that run.
     def get_map_entry(self, param_name, exemplar=0):
         return self.get_map()[(param_name, exemplar)]
 
+    def param_element(self, param_name):
+        # TODO: Do parse for [n]
+        element = 0
+        return (param_name, element)
+
     def check_param_name(self, param_name):
+        (param_name,element) = self.param_element(param_name)
         param_name = self.replace_alias(param_name)
         if not param_name in self.param_names:
             self.print_error(f'unknown parameter name: {param_name}')
@@ -154,7 +160,7 @@ But the order of execution is always read, write and after that run.
                     '  do use option -l to list valid parameter names.\n')
                 # parser.print_help()
             sys.exit(2)
-        return param_name
+        return (param_name,element)
 
     def setup_aliases(self):
         self.alias = {}
@@ -164,7 +170,7 @@ But the order of execution is always read, write and after that run.
                 if a in self.alias:
                     self.print_error(f'alias {ali} already defined')
                     sys.exit(2)
-                self.alias[a] = self.check_param_name(p)
+                (self.alias[a],element) = self.check_param_name(p)
             else:
                 self.print_error(f'invalid alias {ali}')
                 sys.exit(2)
@@ -340,8 +346,7 @@ But the order of execution is always read, write and after that run.
 
     def get_num_registers(self, param_name):
         # Lookup parameter type and unit.
-        (type, unit) = clage_param.clage_param_map[self.check_param_name(
-            param_name)]
+        (type, unit) = clage_param.clage_param_map[self.check_param_name(param_name)[0]]
         if 'bool' == type:
             return 1
         if 'u8' == type:
@@ -399,8 +404,9 @@ But the order of execution is always read, write and after that run.
             f'unknown format {self.args.format}. Do set option --format correct.')
         sys.exit(2)
 
-    def get_value(self, param_name, exemplar=0, retry=0):
-        param_name = self.check_param_name(param_name)
+    def get_value(self, param_name, exemplar=None, retry=0):
+        if None == exemplar:
+            (param_name, exemplar) = self.check_param_name(param_name)
         # Lookup register address
         [p_type, p_addr, p_comment] = self.get_map_entry(param_name, exemplar)
         p_size = self.get_num_registers(param_name)
@@ -505,8 +511,9 @@ But the order of execution is always read, write and after that run.
         else:
             return unit
 
-    def print_param(self, param_name, exemplar=0):
-        param_name = self.check_param_name(param_name)
+    def print_param(self, param_name, exemplar=None):
+        if None == exemplar:
+            (param_name,exemplar) = self.check_param_name(param_name)
         value = self.get_value(param_name, exemplar)
         if None == value:
             return
@@ -671,6 +678,7 @@ But the order of execution is always read, write and after that run.
     def do_read_list(self):
         for (r, e) in sorted(self.get_map().keys()):
             if r in ('end'):
+                print(f'skip {r},{e}')
                 continue
             if self.args.verbose:
                 [p_type, p_addr, p_comment] = self.get_map_entry(r, e)
@@ -678,6 +686,10 @@ But the order of execution is always read, write and after that run.
                     print(f'read {r} as {p_type}({p_addr}) :')
                 else:
                     print(f'read {r}[{e}] as {p_type}({p_addr}) :')
+            if (0 == e):
+                print(f'{r}: ', end = '')
+            else:
+                print(f'{r}[{e}]: ', end = '')
             self.print_param(r, e)
 
     def do_read(self):
