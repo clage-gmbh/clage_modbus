@@ -678,7 +678,6 @@ But the order of execution is always read, write and after that run.
     def do_read_list(self):
         for (r, e) in sorted(self.get_map().keys()):
             if r in ('end'):
-                print(f'skip {r},{e}')
                 continue
             if self.args.verbose:
                 [p_type, p_addr, p_comment] = self.get_map_entry(r, e)

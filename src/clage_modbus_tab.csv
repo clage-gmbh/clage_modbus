@@ -1,5 +1,4 @@
 "Parameter name","Parameter exemplar","modbus signal type","modbus signal ID","data type","data number of bits","unit fraction","comment","number of registers","historic name","function codes used","access"
-"app_version",0,"ain",350,"string","-","none","Application version string","-","input register","0x04","read"
 "ctrl_val",0,"ain",301,"u16","16","u16ctrl","Control value (normal value 2800)","1","input register","0x04","read"
 "daylight_saving",0,"dout",506,"bool","1","none","Flag if daylight saving shall be applied.","1","coil","0x01 0x05 0x0F","read/write"
 "devel_log_cpu_temp",0,"dout",700,"bool","1","none","Flag if CPU temperature shall be logged.","1","coil","0x01 0x05 0x0F","read/write"

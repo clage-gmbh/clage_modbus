@@ -40,7 +40,6 @@ ain, 342, pu_err_s, 6, Device error code history entry timestamp [s]
 ain, 344, pu_err_s, 7, Device error code history entry timestamp [s]
 ain, 346, pu_err_s, 8, Device error code history entry timestamp [s]
 ain, 348, pu_err_s, 9, Device error code history entry timestamp [s]
-ain, 350, app_version, 0, Application version string
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
 ain, 402, end, 2, Modbus register mapping minor version (const)

@@ -1,5 +1,4 @@
 clage_param_map = {
-"app_version": ["string", "none"],
 "ctrl_val": ["u16", "u16ctrl"],
 "daylight_saving": ["bool", "none"],
 "devel_log_cpu_temp": ["bool", "none"],

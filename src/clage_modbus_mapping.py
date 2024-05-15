@@ -41,7 +41,6 @@ clage_modbus_map = [{
 ("pu_err_s", 7): ["ain", 344, "Device error code history entry timestamp [s]"],
 ("pu_err_s", 8): ["ain", 346, "Device error code history entry timestamp [s]"],
 ("pu_err_s", 9): ["ain", 348, "Device error code history entry timestamp [s]"],
-("app_version", 0): ["ain", 350, "Application version string"],
 ("end", 0xC1A6): ["ain", 400, "Modbus CLAGE magic value (const)"],
 ("end", 1): ["ain", 401, "Modbus register mapping major version (const)"],
 ("end", 2): ["ain", 402, "Modbus register mapping minor version (const)"],
