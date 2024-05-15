@@ -313,6 +313,19 @@ But the order of execution is always read, write and after that run.
         if self.args.version:
             self.print_version()
 
+        # List of signal names (needs further read mapping version)
+        param_names = []
+        for (name, x) in self.get_map().keys():
+            if not name in ('end'):
+                param_names.append(name)
+        self.param_names = sorted(set(param_names))
+        self.setup_aliases()
+        # Check if shall list parameter names.
+        if self.args.list:
+            for s in self.param_names:
+                print(f'{s} : {self.get_map_entry(s,0)[2]}')
+            sys.exit(0)
+
         # Check for word order (Old devices default was little endian)
         self.is_word_big_endian = False
         try:
@@ -328,15 +341,6 @@ But the order of execution is always read, write and after that run.
             self.print_error(f'{e}')
             raise Exception(f'failed to read word endianness')
 
-        # List of signal names
-        self.param_names = [name for (name, x) in self.get_map().keys()]
-        self.param_names.sort()
-        self.setup_aliases()
-        # Check if shall list parameter names.
-        if self.args.list:
-            for s in self.param_names:
-                print(f'{s} : {self.get_map_entry(s,0)[2]}')
-            sys.exit(0)
         if self.args.log:
             format = (
                 '%(asctime)-15s %(levelname)-8s %(module)-12s:%(lineno)-6s %(message)s')
