@@ -52,6 +52,8 @@ power_kW10, u16, kW10
 power_max_kW10, u16, kW10
 power_PC, u8, PC
 pu_error, u8, none
+pu_err_s, u32, s
+pu_err, u8, none
 sound, bool, none
 start_jingle, bool, none
 stat_show_costs, bool, none
@@ -64,6 +66,9 @@ temp_setpoint_C10, u16, C10main
 temp_setpoint_delta_steps, i16, none
 temp_setpoint_max_scalding_protection_C10, u16, C10max
 timer_do_stop_flow, bool, none
+timer_life_s, u32, s
+timer_power_s, u32, s
+timer_standby_s, u32, s
 timer_stop_if_flow0, bool, none
 total_energy_Wh, u32, Wh
 total_tap_count, u32, none
