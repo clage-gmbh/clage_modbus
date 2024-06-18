@@ -15,6 +15,7 @@ except ImportError:
     from pymodbus.client import ModbusTcpClient
     from pymodbus.client import ModbusSerialClient
 import datetime
+import pytz
 import logging
 import difflib
 import clage_param
@@ -87,7 +88,7 @@ But the order of execution is always read, write and after that run.
         if epoch:
             d = datetime.datetime.fromtimestamp(epoch, datetime.timezone.utc)
         else:
-            d = datetime.datetime.utcnow()
+            d = datetime.datetime.now(tz=pytz.UTC)
         return d.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
     def print_error(self, error):
@@ -126,7 +127,7 @@ But the order of execution is always read, write and after that run.
         return sorted(result, key=lambda s: int(re.search(r'\d+', s).group()))
 
     def replace_alias(self, name):
-        return self.alias[name] if name in self.alias else name
+        return self.alias[name] if name in self.alias else (name,0)
 
     def get_map(self):
         map_v = len(clage_modbus_mapping.clage_modbus_map)
@@ -145,7 +146,7 @@ But the order of execution is always read, write and after that run.
 
     def check_param_name(self, param_name):
         (param_name,element) = self.param_element(param_name)
-        param_name = self.replace_alias(param_name)
+        (param_name,element) = self.replace_alias(param_name)
         if not param_name in self.param_names:
             self.print_error(f'unknown parameter name: {param_name}')
             alt_names = difflib.get_close_matches(
@@ -170,7 +171,7 @@ But the order of execution is always read, write and after that run.
                 if a in self.alias:
                     self.print_error(f'alias {ali} already defined')
                     sys.exit(2)
-                (self.alias[a],element) = self.check_param_name(p)
+                self.alias[a] = self.check_param_name(p)
             else:
                 self.print_error(f'invalid alias {ali}')
                 sys.exit(2)
@@ -378,19 +379,19 @@ But the order of execution is always read, write and after that run.
 
     def get_aout(self, address, count):
         return self.modbus_client.read_holding_registers(
-            address, count, unit=self.args.server_id)
+            address, count, slave=self.args.server_id)
 
     def get_ain(self, address, count):
         return self.modbus_client.read_input_registers(
-            address, count, unit=self.args.server_id)
+            address, count, slave=self.args.server_id)
 
     def get_dout(self, address, count):
         return self.modbus_client.read_coils(
-            address, count, unit=self.args.server_id)
+            address, count, slave=self.args.server_id)
 
     def get_din(self, address, count):
         return self.modbus_client.read_discrete_inputs(
-            address, count, unit=self.args.server_id)
+            address, count, slave=self.args.server_id)
 
     def print_default(self, string):
         print(self.timestamp(': ')+string)
@@ -409,8 +410,9 @@ But the order of execution is always read, write and after that run.
         sys.exit(2)
 
     def get_value(self, param_name, exemplar=None, retry=0):
+        (param_name, exemplar_2) = self.check_param_name(param_name)
         if None == exemplar:
-            (param_name, exemplar) = self.check_param_name(param_name)
+            exemplar = exemplar_2
         # Lookup register address
         [p_type, p_addr, p_comment] = self.get_map_entry(param_name, exemplar)
         p_size = self.get_num_registers(param_name)
@@ -516,8 +518,9 @@ But the order of execution is always read, write and after that run.
             return unit
 
     def print_param(self, param_name, exemplar=None):
+        (param_name, exemplar_2) = self.check_param_name(param_name)
         if None == exemplar:
-            (param_name,exemplar) = self.check_param_name(param_name)
+            exemplar = exemplar_2
         value = self.get_value(param_name, exemplar)
         if None == value:
             return
@@ -541,18 +544,18 @@ But the order of execution is always read, write and after that run.
 
     def set_aout(self, address, value_list):
         if 1 == len(value_list):
-            return self.modbus_client.write_register(address, value_list[0], unit=self.args.server_id)
+            return self.modbus_client.write_register(address, value_list[0], slave=self.args.server_id)
         else:
-            return self.modbus_client.write_registers(address, value_list, unit=self.args.server_id)
+            return self.modbus_client.write_registers(address, value_list, slave=self.args.server_id)
 
     def set_dout(self, address, value_list):
         if 1 == len(value_list):
-            return self.modbus_client.write_coil(address, value_list[0], unit=self.args.server_id)
+            return self.modbus_client.write_coil(address, value_list[0], slave=self.args.server_id)
         else:
-            return self.modbus_client.write_coils(address, value_list, unit=self.args.server_id)
+            return self.modbus_client.write_coils(address, value_list, slave=self.args.server_id)
 
     def set_raw_value(self, param_name, value):
-        param_name = self.check_param_name(param_name)
+        (param_name, exemplar) = self.check_param_name(param_name)
         # Lookup parameter type and unit.
         (type, unit) = clage_param.clage_param_map[param_name]
         # Lookup register address
@@ -598,7 +601,7 @@ But the order of execution is always read, write and after that run.
         assert(wr.function_code < 0x80)
 
     def set_base(self, param_name, base):
-        param_name = self.check_param_name(param_name)
+        (param_name, exemplar) = self.check_param_name(param_name)
         # Lookup parameter type and unit.
         (type, unit) = clage_param.clage_param_map[param_name]
         if 'epoch' == unit:
