@@ -34,10 +34,11 @@ Anyone who controls a CLAGE instantaneous water heater via Modbus is responsible
 This disclaimer applies to the use of instant water heaters as manufactured by CLAGE GmbH incorporating a Modbus interface.
 By using this device and its Modbus interface, you agree to the terms contained in this Disclaimer.
 
-The Modbus interface of the instant water heaters are provided "as is" and "as available." CLAGE GmbH makes no warranties, expressed or implied, regarding the operation, performance, or availability of the device or its Modbus interface.
+The Modbus interface of the instant water heaters is provided "as is" and "as available."
+CLAGE GmbH makes no warranties, expressed or implied, regarding the operation, performance, or availability of the Modbus interface.
 
 CLAGE GmbH shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your use of the instant water heaters Modbus interface.
-This includes, but is not limited to, any damages resulting from water, heat, system failures, or third-party access.
+This includes, but is not limited to, any damages resulting from water, heat, electricity, system failures, or third-party access.
 
 CLAGE does not warrant or guarantee the accuracy, reliability, or completeness of any data transmitted through the Modbus interface.
 Users acknowledge that data transmission may be subject to interruptions, delays, or errors.
@@ -45,7 +46,8 @@ Users acknowledge that data transmission may be subject to interruptions, delays
 Integration of the instant water heater with third-party systems or software via the Modbus interface is done at the user's own risk.
 CLAGE GmbH is not responsible for any compatibility issues, data inconsistencies, or system failures resulting from such integrations.
 
-CLAGE GmbH cannot guarantee the absolute security of data transmitted via the Modbus interface. Users are responsible for implementing appropriate security measures in their own systems and networks.
+CLAGE GmbH cannot guarantee the absolute security of data transmitted via the Modbus interface.
+Users are responsible for implementing appropriate security measures in their own systems and networks.
 
 Users are responsible for ensuring that their use of the instant water heater and its Modbus interface complies with all applicable local, national, and international laws and regulations.
 
