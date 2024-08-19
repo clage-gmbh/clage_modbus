@@ -22,6 +22,14 @@ The mapping of the device parameters to the modbus register addresses is provide
 For using the Modbus RTU interface there is an open source [command line tool written in Python](src/clage_modbus.py) to test and demonstrate the usage.
 The command line tools can also be loaded as a module providing a Python class to access parameters of a CLAGE device.
 
+## Safety notice
+
+Modbus and EIA-485 do not provide any concepts for protection against unauthorized access.
+Anyone who has access to the Modbus cable has the ability to control the devices connected to it.
+If the Modbus cable is connected to other communication media (e.g. a gateway), this connection must be protected against unauthorized access.
+For all installations, it must be noted that control via Modbus can also be used to perform safety-relevant functions such as the initial setting of the maximum power (MPS), thermal treatment, the opening of the water valve after automatic shut-off and others.
+Anyone who controls a CLAGE instantaneous water heater via Modbus is responsible for implementing this in a secure manner.
+
 ## License
 
 Copyright © 2023 CLAGE GmbH, Germany
