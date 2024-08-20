@@ -31,6 +31,7 @@ For all installations, it must be noted that control via Modbus can also be used
 Anyone who controls a CLAGE instantaneous water heater via Modbus is responsible for implementing this in a secure manner.
 
 ## Exclusion of Liability
+
 This disclaimer applies to the use of instant water heaters as manufactured by CLAGE GmbH incorporating a Modbus interface.
 By using this device and its Modbus interface, you agree to the terms contained in this Disclaimer.
 
