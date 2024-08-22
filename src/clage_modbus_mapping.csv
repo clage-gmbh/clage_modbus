@@ -10,8 +10,11 @@ ain, 104, total_tap_count, 0, Count of water tap usages 32 bit
 ain, 106, device_total_uptime_s, 0, Device total power-on time 32 bit [s]
 ain, 108, device_total_heating_s, 0, Device total heating time 32 bit [s]
 ain, 110, device_uptime_s, 0, Time since last power-on 32 bit [s]
-ain, 200, fill_remain_l, 0, Remaining volume to fill liter
-ain, 201, fill_remain_s, 0, Remaining time to fill seconds
+ain, 200, fill_remain_l, 0, Remaining volume of fill automatic in liter
+ain, 201, fill_remain_s, 0, Remaining time of timer automatic in seconds
+ain, 202, therm_treat_count, 0, Number of thermal treatments
+ain, 203, therm_treat_amount_l, 0, Volume used for thermal treatment in liter
+ain, 205, therm_treat_duration_s, 0, Duration of thermal treatment in seconds
 ain, 300, pu_error, 0, Device error code (0 = no error)
 ain, 301, ctrl_val, 0, Control value (normal value 2800)
 ain, 310, mps_id, 0, Currently selected MPS level 0 to (mps_id_end-1)
@@ -42,13 +45,18 @@ ain, 346, pu_err_s, 8, Device error code history entry timestamp [s]
 ain, 348, pu_err_s, 9, Device error code history entry timestamp [s]
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
-ain, 402, end, 2, Modbus register mapping minor version (const)
+ain, 402, end, 3, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
 aout, 2, temp_setpoint_max_scalding_protection_C10, 0, Maximum temperature setpoint [1/10 deg centigrade]
 aout, 3, temp_setpoint_delta_steps, 0, Outlet temperature setpoint change in steps.
 aout, 4, flow_max_delta_steps, 0, Maximum volume per time at outlet change in steps.
+aout, 200, volume_start_l, 0, Amount of water to be filled with automatic in liter
+aout, 201, timer_start_s, 0, Amount of time to keep water running by timer in seconds
+aout, 202, timer_timeout_min, 0, Turn off automatic if no water flow for minutes
+aout, 203, timer_sound, 0, Select sound to be played if automatic finishes (0 = off)
+aout, 310, mps_id, 0, MPS level to be initially selected (0 to mps_id_end-1)
 aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
 aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
 aout, 403, modbus_server_addr, 0, First server address
@@ -77,8 +85,12 @@ din, 500, net_sntp_client_up, 0, Flag if SNTP client is running
 din, 501, wlan_sta_bssid_set, 0, Flag if WLAN BSSID is set
 din, 600, hw_tft_touch, 0, Flag if this HW provides a TFT/GUI (DSX Touch)
 din, 601, gui_screens_up, 0, Flag if all screens are up
-dout, 100, timer_do_stop_flow, 0, Flag if timer shall stop flow
-dout, 101, timer_stop_if_flow0, 0, Flag if timer shall stop at no flow
+dout, 200, timer_do_stop_flow, 0, Flag if timer shall stop flow
+dout, 201, timer_stop_if_flow0, 0, Flag if timer shall stop at no flow
+dout, 210, filling_active, 0, Flag if filling automatic shall be activated
+dout, 211, timer_active, 0, Flag if timer automatic shall be activated
+dout, 212, therm_treat_active, 0, Flag if thermal treatment shall be activated
+dout, 213, valve_open, 0, Flag if valve shall be opened (after has been closed)
 dout, 300, system_do_reboot, 0, Flag to trigger new start of CPU
 dout, 301, system_do_reset, 0, Flag to trigger factory reset
 dout, 302, system_do_reboot_next, 0, Flag to trigger start of second partition
