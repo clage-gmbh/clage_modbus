@@ -19,7 +19,7 @@ setup(
         'pymodbus==2.1.0',
         'pyserial==3.5',
         'pyserial_asyncio==0.6',
-        'python_dateutil==2.8.1'.
+        'python_dateutil==2.8.1'
     ],
 )
 
