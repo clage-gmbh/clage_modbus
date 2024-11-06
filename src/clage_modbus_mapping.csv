@@ -73,9 +73,9 @@ din, 2, is_temp_setpoint_max_scalding_protection, 0, Is scalding protection
 din, 3, is_jumper_lock, 0, Flag if jumper lock is active
 din, 200, is_therm_treat_inhibit, 0, Flag if thermal treatment is inhibited
 din, 201, is_therm_treat_active, 0, Flag if thermal treatment is active
-din, 202, filling_active, 0, Flag if tub filling is active.
-din, 203, is_fill_amount, 0, Flag if fill amount is given
-din, 204, is_fill_time, 0, Flag if filling time is given
+din, 202, filling_active, 0, Flag if filling automatic is active (deprecated)
+din, 203, is_fill_amount, 0, Flag if filling automatic is active
+din, 204, is_fill_time, 0, Flag if timer automatic is active
 din, 300, has_RM, 0, Flag if this device has a radio module installed.
 din, 301, has_VC, 0, Flag if this device has a valve installed.
 din, 302, is_fast_boot, 0, Fast boot ???
