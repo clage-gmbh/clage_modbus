@@ -289,8 +289,10 @@ But the order of execution is always read, write and after that run.
             if self.args.verbose:
                 print(f'Using Modbus TCP {self.args.ip_addr}:{self.args.port}')
         else:
+            # Default is framer=FramerType.RTU (method='rtu' is outdated)
+            # Default bytesize=8, stopbits=1, handle_local_echo=False
             self.modbus_client = ModbusSerialClient(
-                method='rtu', port=self.args.uart, baudrate=self.args.baudrate, parity=self.args.parity, timeout=1, retries=self.args.retry)
+                port=self.args.uart, baudrate=self.args.baudrate, parity=self.args.parity, timeout=1, retries=self.args.retry)
             if self.args.verbose:
                 print(
                     f'Using Modbus RTU {self.args.uart},{self.args.baudrate},{self.args.parity}')
@@ -459,7 +461,7 @@ But the order of execution is always read, write and after that run.
                 print(f'got payload {rr.registers} for {type} {unit}')
             # Parse payload according to parameter type.
             payload = BinaryPayloadDecoder.fromRegisters(
-                rr.registers, byteorder=Endian.Big, wordorder=Endian.Big if self.is_word_big_endian else Endian.Little)
+                rr.registers, byteorder=Endian.BIG, wordorder=Endian.BIG if self.is_word_big_endian else Endian.LITTLE)
             if 'bool' == type:
                 return payload.decode_16bit_uint()
             elif 'u8' == type:
@@ -568,7 +570,7 @@ But the order of execution is always read, write and after that run.
             wr = self.set_dout(p_addr, [0 != value])
         else:
             payload = BinaryPayloadBuilder(
-                byteorder=Endian.Big, wordorder=(Endian.Big if self.is_word_big_endian else Endian.Little))
+                byteorder=Endian.BIG, wordorder=(Endian.BIG if self.is_word_big_endian else Endian.LITTLE))
             if 'bool' == type:
                 payload.add_16bit_uint(value)
             elif 'u8' == type:
