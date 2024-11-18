@@ -448,7 +448,8 @@ But the order of execution is always read, write and after that run.
                 self.print_wrong_format()
             return None
         # Check that not an error reply.
-        assert(rr.function_code < 0x80)
+        if (rr.isError()):
+            print("FAILED:",rr)
         # Lookup parameter type and unit.
         (type, unit) = clage_param.clage_param_map[param_name]
         if p_type in ('din', 'dout'):
@@ -599,8 +600,8 @@ But the order of execution is always read, write and after that run.
             if self.args.verbose:
                 print(f'write {payload.to_registers()} to AOUT {p_addr}')
             wr = self.set_aout(p_addr, payload.to_registers())
-        # Check that not an error reply.
-        assert(wr.function_code < 0x80)
+        if (wr.isError()):
+            print("FAILED:", wr)
 
     def set_base(self, param_name, base):
         (param_name, exemplar) = self.check_param_name(param_name)
