@@ -119,7 +119,9 @@ But the order of execution is always read, write and after that run.
                 s.close()
                 result.append(port)
             except (OSError, serial.SerialException) as e:
-                print(f'serial exception: {e}')
+                # Do not show failed try on windoof. Without wildcard there are too many non existent.
+                if not sys.platform.startswith('win'):
+                    print(f'serial exception: {e}')
                 pass
             except e:
                 print(f'exception: {e}')

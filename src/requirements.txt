@@ -1,6 +1,6 @@
 crcmod>=1.7
 minimalmodbus>=2.1.1
-pymodbus>=2.1.0
+pymodbus>=3.7.0
 pyserial>=3.5
 pyserial_asyncio>=0.6
 python_dateutil>=2.8.1
