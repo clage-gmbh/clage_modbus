@@ -3,7 +3,16 @@
 #
 # Python command line application to control a CLAGE continuous-flow water heater.
 #
+from packaging import version
 
+def check_version(module, required_version):
+    installed_version = module.__version__
+    if version.parse(installed_version) < version.parse(required_version):
+        print(f"{module.__name__} version {installed_version} does not meet the requirement (>= {required_version})")
+        exit(1)
+
+import pymodbus
+check_version(pymodbus, "3.3.0")
 from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.payload import BinaryPayloadBuilder
@@ -33,7 +42,7 @@ import ipaddress
 
 class clage_modbus:
     # Version of this class and tool.
-    c_version = '0.1.8'
+    c_version = '0.1.9'
     c_clage_magic = 0xC1A6
 
     def examples(void):
