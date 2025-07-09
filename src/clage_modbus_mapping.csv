@@ -17,6 +17,7 @@ ain, 203, therm_treat_amount_l, 0, Volume used for thermal treatment in liter
 ain, 205, therm_treat_duration_s, 0, Duration of thermal treatment in seconds
 ain, 300, pu_error, 0, Device error code (0 = no error)
 ain, 301, ctrl_val, 0, Control value (normal value 2800)
+ain, 302, leakage_raw, 0, Leakage detection raw 12 bit ADC value (0...4095)
 ain, 310, mps_id, 0, Currently selected MPS level 0 to (mps_id_end-1)
 ain, 311, mps_id_end, 0, Number of MPS levels supported
 ain, 312, mps0_kW10, 0, Maximum power at MPS level 0
@@ -45,7 +46,7 @@ ain, 346, pu_err_s, 8, Device error code history entry timestamp [s]
 ain, 348, pu_err_s, 9, Device error code history entry timestamp [s]
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
-ain, 402, end, 3, Modbus register mapping minor version (const)
+ain, 402, end, 4, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
@@ -56,6 +57,8 @@ aout, 200, volume_start_l, 0, Amount of water to be filled with automatic in lit
 aout, 201, timer_start_s, 0, Amount of time to keep water running by timer in seconds
 aout, 202, timer_timeout_min, 0, Turn off automatic if no water flow for minutes
 aout, 203, timer_sound, 0, Select sound to be played if automatic finishes (0 = off)
+aout, 300, leakage_active, 0, Threshold of ADC to assume leakage as active.
+aout, 301, leakage_inactive, 0, Threshold of ADC to assume leakage as inactive.
 aout, 310, mps_id, 0, MPS level to be initially selected (0 to mps_id_end-1)
 aout, 400, modbus_baudrate, 0, UART symbols per second for EIA-485 usage.
 aout, 402, modbus_parity, 0, UART parity (0:none; 1:odd; 2:even) for EIA-485.
@@ -113,8 +116,8 @@ dout, 506, daylight_saving, 0, Flag if daylight saving shall be applied.
 dout, 507, net_rest_api, 0, Flag if REST API shall be started.
 dout, 508, net_rest_api_tls, 0, Flag if REST shall use TLS encryption.
 dout, 509, net_rest_api_auth, 0, Flag if REST shall check for authentication.
-dout, 510, net_aws, 0, AWS active (not implemented)
-dout, 511, net_matter_api, 0, Matter active (not implemented)
+dout, 510, net_access_param_r, 0, Flag if REST /param shall allow read access with legacy default.
+dout, 511, net_access_param_w, 0, Flag if REST /param shall allow write access with legacy default.
 dout, 600, home_flow, 0, Flag if home screen shall show flow limit
 dout, 601, home_time, 0, Flag if home screen shall show time
 dout, 602, display_bright_flow, 0, Water flow finish idle state of display light.
