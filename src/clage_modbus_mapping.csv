@@ -10,6 +10,8 @@ ain, 104, total_tap_count, 0, Count of water tap usages 32 bit
 ain, 106, device_total_uptime_s, 0, Device total power-on time 32 bit [s]
 ain, 108, device_total_heating_s, 0, Device total heating time 32 bit [s]
 ain, 110, device_uptime_s, 0, Time since last power-on 32 bit [s]
+ain, 112, resistivity_state, 0, State of water resistivity measurement.
+ain, 113, resistivity_8Ohmcm, 0, Value of water resistivity (1 digit = 8 Ohm*cm).
 ain, 200, fill_remain_l, 0, Remaining volume of fill automatic in liter
 ain, 201, fill_remain_s, 0, Remaining time of timer automatic in seconds
 ain, 202, therm_treat_count, 0, Number of thermal treatments
@@ -48,6 +50,7 @@ ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
 ain, 402, end, 4, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
+ain, 504, net_aws_state, 0, AWS cloud connection state (signed negative is error)
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
 aout, 1, flow_max_lmin10, 0, Maximum volume per time at outlet [1/10 l/min]
 aout, 2, temp_setpoint_max_scalding_protection_C10, 0, Maximum temperature setpoint [1/10 deg centigrade]
@@ -118,6 +121,10 @@ dout, 508, net_rest_api_tls, 0, Flag if REST shall use TLS encryption.
 dout, 509, net_rest_api_auth, 0, Flag if REST shall check for authentication.
 dout, 510, net_access_param_r, 0, Flag if REST /param shall allow read access with legacy default.
 dout, 511, net_access_param_w, 0, Flag if REST /param shall allow write access with legacy default.
+dout, 530, net_aws, 0, Flag if AWS cloud service is/shall be active.
+dout, 531, net_aws_do_restart, 0, Restart of service and reload provisioning data.
+dout, 532, net_aws_do_deletion, 0, Trigger removal of provisioning data.
+dout, 533, net_aws_do_reset, 0, Factory reset of service erasing certificates and renewing UUIDs.
 dout, 600, home_flow, 0, Flag if home screen shall show flow limit
 dout, 601, home_time, 0, Flag if home screen shall show time
 dout, 602, display_bright_flow, 0, Water flow finish idle state of display light.
@@ -126,3 +133,4 @@ dout, 604, start_jingle, 0, Flag if device shall play a start jingle
 dout, 605, stat_show_costs, 0, Flag if consts shall be shown in statistics.
 dout, 700, devel_log_cpu_temp, 0, Flag if CPU temperature shall be logged.
 dout, 701, devel_update_test_feed, 0, Flag if developer test feed shall be used for update
+dout, 702, devel_url_sn_suffix, 0, Flag if S/N shall be provided for update

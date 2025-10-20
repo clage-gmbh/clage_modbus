@@ -2,6 +2,7 @@ ctrl_val, u16, u16ctrl
 daylight_saving, bool, none
 devel_log_cpu_temp, bool, none
 devel_update_test_feed, bool, none
+devel_url_sn_suffix, bool, none
 device_total_heating_s, u32, s
 device_total_uptime_s, u32, s
 device_uptime_s, u32, s
@@ -48,6 +49,11 @@ mps_id_end, u8, u8mpsid
 mps_id, u8, u8mpsid
 net_access_param_r, bool, none
 net_access_param_w, bool, none
+net_aws, bool, none
+net_aws_do_deletion, bool, none
+net_aws_do_reset, bool, none
+net_aws_do_restart, bool, none
+net_aws_state, i16, none
 net_rest_api_auth, bool, none
 net_rest_api, bool, none
 net_rest_api_tls, bool, none
@@ -59,6 +65,8 @@ power_PC, u8, PC
 pu_error, u8, none
 pu_err_s, u32, s
 pu_err, u8, none
+resistivity_8Ohmcm, u16, 8Ohmcm
+resistivity_state, u8, none
 sound, bool, none
 start_jingle, bool, none
 stat_show_costs, bool, none
