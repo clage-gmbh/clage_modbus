@@ -46,9 +46,11 @@ ain, 342, pu_err_s, 6, Device error code history entry timestamp [s]
 ain, 344, pu_err_s, 7, Device error code history entry timestamp [s]
 ain, 346, pu_err_s, 8, Device error code history entry timestamp [s]
 ain, 348, pu_err_s, 9, Device error code history entry timestamp [s]
+ain, 350, app_v_ma_mi_re, 0, Numeric representation of active software version.
+ain, 354, app2_v_ma_mi_re, 0, Numeric representation of inactive software version.
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
-ain, 402, end, 4, Modbus register mapping minor version (const)
+ain, 402, end, 5, Modbus register mapping minor version (const)
 ain, 500, epoch_s, 0, Time of day as UNIX epoch 64 bit [s]
 ain, 504, net_aws_state, 0, AWS cloud connection state (signed negative is error)
 aout, 0, temp_setpoint_C10, 0, Outlet temperature setpoint [1/10 deg centigrade]
@@ -72,7 +74,6 @@ aout, 406, modbus_server_addr, 3, Fourth server address
 aout, 407, modbus_server_addr, 4, Fifth server address
 aout, 408, modbus_broadcast_addr, 0, DLE broadcast address
 aout, 410, modbus_epoch_s, 0, UNIX epoch time as provided by modbus
-aout, 500, wlan_ssid, 0, WLAN SSID string
 din, 0, is_power_limit, 0, Flag if this device is on power limit.
 din, 1, is_temp_setpoint_max, 0, Is setpoint at maximum
 din, 2, is_temp_setpoint_max_scalding_protection, 0, Is scalding protection

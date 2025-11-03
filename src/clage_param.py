@@ -1,4 +1,6 @@
 clage_param_map = {
+"app2_v_ma_mi_re": ["u64", "none"],
+"app_v_ma_mi_re": ["u64", "none"],
 "ctrl_val": ["u16", "u16ctrl"],
 "daylight_saving": ["bool", "none"],
 "devel_log_cpu_temp": ["bool", "none"],
@@ -106,6 +108,5 @@ clage_param_map = {
 "wlan_restart": ["bool", "none"],
 "wlan_scan": ["bool", "none"],
 "wlan_setup": ["bool", "none"],
-"wlan_ssid": ["string", "none"],
 "wlan_sta_bssid_set": ["bool", "none"],
 }
