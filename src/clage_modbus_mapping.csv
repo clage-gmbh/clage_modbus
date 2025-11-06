@@ -48,6 +48,8 @@ ain, 346, pu_err_s, 8, Device error code history entry timestamp [s]
 ain, 348, pu_err_s, 9, Device error code history entry timestamp [s]
 ain, 350, app_v_ma_mi_re, 0, Numeric representation of active software version.
 ain, 354, app2_v_ma_mi_re, 0, Numeric representation of inactive software version.
+ain, 358, serial_number_u64, 0, Device serial number as unsigned decimal integer.
+ain, 362, article_number_u64, 0, Device article number as unsigned decimal integer.
 ain, 400, end, 0xC1A6, Modbus CLAGE magic value (const)
 ain, 401, end, 1, Modbus register mapping major version (const)
 ain, 402, end, 5, Modbus register mapping minor version (const)

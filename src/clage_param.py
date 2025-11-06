@@ -1,6 +1,7 @@
 clage_param_map = {
 "app2_v_ma_mi_re": ["u64", "none"],
 "app_v_ma_mi_re": ["u64", "none"],
+"article_number_u64": ["u64", "none"],
 "ctrl_val": ["u16", "u16ctrl"],
 "daylight_saving": ["bool", "none"],
 "devel_log_cpu_temp": ["bool", "none"],
@@ -70,6 +71,7 @@ clage_param_map = {
 "pu_err": ["u8", "none"],
 "resistivity_8Ohmcm": ["u16", "8Ohmcm"],
 "resistivity_state": ["u8", "none"],
+"serial_number_u64": ["u64", "none"],
 "sound": ["bool", "none"],
 "start_jingle": ["bool", "none"],
 "stat_show_costs": ["bool", "none"],

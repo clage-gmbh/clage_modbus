@@ -49,6 +49,8 @@ clage_modbus_map = [{
 ("pu_err_s", 9): ["ain", 348, "Device error code history entry timestamp [s]"],
 ("app_v_ma_mi_re", 0): ["ain", 350, "Numeric representation of active software version."],
 ("app2_v_ma_mi_re", 0): ["ain", 354, "Numeric representation of inactive software version."],
+("serial_number_u64", 0): ["ain", 358, "Device serial number as unsigned decimal integer."],
+("article_number_u64", 0): ["ain", 362, "Device article number as unsigned decimal integer."],
 ("end", 0xC1A6): ["ain", 400, "Modbus CLAGE magic value (const)"],
 ("end", 1): ["ain", 401, "Modbus register mapping major version (const)"],
 ("end", 5): ["ain", 402, "Modbus register mapping minor version (const)"],
