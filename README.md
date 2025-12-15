@@ -1,5 +1,8 @@
 <p align="center"><img src="https://www.clage.com/assets/gfx/logo.svg" alt="CLAGE GmbH" width="150"> <i>Modbus</i></p>
 
+> [!NOTE] 
+> Firmware version **0.6.6** providing voice control and enhanced modbus support is now public online for all ESP32 based instantaneous water heaters like [CLAGE DSX Touch](https://www.clage.com/en/products/instantaneous-water-heaters/e-comfort-instant-water-heaters/dsx-touch) and [CLAGE E-module ISX](https://www.clage.com/en/products/instantaneous-water-heaters/e-module-instantaneous-water-heaters/isx)
+
 # CLAGE GmbH Modbus API
 
 * <span style="font-size:2em;">[Modbus **Wiki**](../../wiki)</span>
@@ -72,3 +75,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 All code here is provided under the [Apache License 2.0](https://fossa.com/blog/open-source-licenses-101-apache-license-2-0/) or above.
+
+## Legal
+* [Imprint](https://www.clage.com/en/imprint)
+* [Data privacy](https://www.clage.com/en/data-privacy)
