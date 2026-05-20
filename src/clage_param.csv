@@ -23,7 +23,6 @@ has_VC, bool, none
 home_flow, bool, none
 home_time, bool, none
 hw_tft_touch, bool, none
-is_fast_boot, bool, none
 is_fill_amount, bool, none
 is_fill_time, bool, none
 is_jumper_lock, bool, none
@@ -68,6 +67,7 @@ power_PC, u8, PC
 pu_error, u8, none
 pu_err_s, u32, s
 pu_err, u8, none
+quick_start, bool, none
 resistivity_8Ohmcm, u16, 8Ohmcm
 resistivity_state, u8, none
 serial_number_u64, u64, none
