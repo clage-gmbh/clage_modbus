@@ -1,0 +1,11 @@
+*.ttl
+*.orig
+*.suo
+*.swp
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.zip
+*.z0?
+*.bin

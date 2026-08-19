@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="${PROTEGE_HOME:-/opt/protege/Protege-5.6.9}"
+
+if [ ! -d "$APP_DIR" ]; then
+  echo "Protege installation not found: $APP_DIR" >&2
+  exit 1
+fi
+
+CALLER_PWD="$PWD"
+ARGS=()
+
+for arg in "$@"; do
+  case "$arg" in
+    -*)
+      ARGS+=("$arg")
+      ;;
+    *:*)
+      # Already looks like a URI, for example file:///... or https://...
+      ARGS+=("$arg")
+      ;;
+    *)
+      if [ -e "$arg" ]; then
+        dir=$(dirname "$arg")
+        base=$(basename "$arg")
+        if [[ "$dir" = /* ]]; then
+          abs_dir=$(cd "$dir" && pwd -P)
+        else
+          abs_dir=$(cd "$CALLER_PWD/$dir" && pwd -P)
+        fi
+        ARGS+=("file://$abs_dir/$base")
+      else
+        ARGS+=("$arg")
+      fi
+      ;;
+  esac
+done
+
+mkdir -p "$HOME/.Protege/logs" 2>/dev/null || true
+
+conf_file=
+if [ -f "$HOME/.Protege/conf/jvm.conf" ]; then
+  conf_file="$HOME/.Protege/conf/jvm.conf"
+elif [ -f "$APP_DIR/conf/jvm.conf" ]; then
+  conf_file="$APP_DIR/conf/jvm.conf"
+fi
+
+EXTRA_JVM_OPTIONS=
+EFFECTIVE_JAVA_HOME=
+if [ -n "$conf_file" ]; then
+  EXTRA_JVM_OPTIONS=$(sed -n 's/^max_heap_size=/-Xmx/p; s/^min_heap_size=/-Xms/p; s/^stack_size=/-Xss/p; s/^append=//p;' "$conf_file" | tr '\n' ' ')
+  EFFECTIVE_JAVA_HOME=$(sed -n 's/^java_home=//p' "$conf_file")
+fi
+
+[ -z "$EFFECTIVE_JAVA_HOME" ] && EFFECTIVE_JAVA_HOME="${PROTEGE_JAVA_HOME:-}"
+[ -z "$EFFECTIVE_JAVA_HOME" ] && EFFECTIVE_JAVA_HOME="${JAVA_HOME:-}"
+[ -z "$EFFECTIVE_JAVA_HOME" ] && EFFECTIVE_JAVA_HOME="$APP_DIR/jre"
+
+JAVA_BIN="$EFFECTIVE_JAVA_HOME/bin/java"
+if [ ! -x "$JAVA_BIN" ]; then
+  echo "Java executable not found: $JAVA_BIN" >&2
+  exit 1
+fi
+
+cd "$APP_DIR"
+
+exec "$JAVA_BIN" \
+  -DentityExpansionLimit=100000000 \
+  -Dlogback.configurationFile="$APP_DIR/conf/logback.xml" \
+  -Dfile.encoding=UTF-8 \
+  -XX:CompileCommand=exclude,javax/swing/text/GlyphView,getBreakSpot \
+  --add-opens=java.desktop/sun.swing=ALL-UNNAMED \
+  -classpath "$APP_DIR/bundles/guava.jar:$APP_DIR/bundles/logback-classic.jar:$APP_DIR/bundles/logback-core.jar:$APP_DIR/bundles/slf4j-api.jar:$APP_DIR/bundles/glassfish-corba-orb.jar:$APP_DIR/bundles/org.apache.felix.main.jar:$APP_DIR/bundles/maven-artifact.jar:$APP_DIR/bundles/protege-launcher.jar" \
+  ${CMD_OPTIONS:-} ${EXTRA_JVM_OPTIONS:-} org.protege.osgi.framework.Launcher "${ARGS[@]}"
